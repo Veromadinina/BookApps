@@ -15,8 +15,11 @@ class Firebase {
 
         getCategories = () => this.firestore.collection("Categories").get();
        
-     // Première requête pour recuperer lister  les catégories   
+     // Première requête pour recuperer lister  les articles   
         getArticles = () => this.firestore.collection("Articles").get();
+
+            // récupérer 1 article
+        getArticleById = (id) => this.firestore.collection("Articles").doc(id).get();
 
 
 

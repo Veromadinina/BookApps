@@ -6,12 +6,14 @@ import { useNavigation } from '@react-navigation/native'
 
 
 
-const RenderArticles = ({articles}) => {
+const RenderArticles = ({article}) => {
 
   const navigation = useNavigation();
 
   const onPressArticle = ()=>{
-      navigation.navigate('DetailArticle')
+      navigation.navigate('DetailArticle',{id:article.id})
+
+      console.log('article',article)
   }
 
 
@@ -22,7 +24,7 @@ const RenderArticles = ({articles}) => {
                     onPress= {onPressArticle}>
 
 
-      <Text style={styles.textArticles}>{articles.nom}</Text>
+      <Text style={styles.textArticles}>{article.nom}</Text>
 
   </TouchableOpacity>
 )
@@ -41,7 +43,7 @@ const Articles = () => {
         data={dataArticle}
         horizontal={false}
         numColumns={2}
-        renderItem={({item})=><RenderArticles articles={item}/>}
+        renderItem={({item})=><RenderArticles article={item}/>}
         keyExtractor={item=>item.id}
       />
     </View>
