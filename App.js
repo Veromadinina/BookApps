@@ -8,7 +8,6 @@ import News from './AllApps/AppNews';
 import Tuto from './AllApps/TutoFlatlist';
 import TutoFireList from './AllApps/TutoFireList'
 // import DetailScreen from './AllApps/AppNews/detail';
-
 import store from './redux/store';
 import { Provider } from 'react-redux';
 import Ecommerce from './AllApps/Ecommerce';
@@ -36,6 +35,8 @@ const App = () => {
 
       {/**Ecommerce app screen  */}
       <Stack.Screen name="AppEcommerce" component={Ecommerce} options={{headerShown:false}} />
+
+
     {/** TutoFireListScreen */}
       <Stack.Screen name="TutoFireList" component={TutoFireList} />
       </Stack.Navigator>

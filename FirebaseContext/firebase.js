@@ -11,9 +11,12 @@ class Firebase {
         this.firestore = firestore();
     }
 
-    // Première requête pour recuperer  les catégories
+    // Première requête pour recuperer lister  les catégories
 
         getCategories = () => this.firestore.collection("Categories").get();
+       
+     // Première requête pour recuperer lister  les catégories   
+        getArticles = () => this.firestore.collection("Articles").get();
 
 
 

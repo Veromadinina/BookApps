@@ -1,14 +1,8 @@
 import { StyleSheet, Text, View,FlatList } from 'react-native'
 import React from 'react'
 import { TouchableOpacity } from 'react-native-gesture-handler'
+import { useSelector } from 'react-redux'
 
-
-const data = [{id:1,nom:'cat 1'},
-              {id:2,nom:'cat 1'},
-              {id:3,nom:'cat 1'},
-              {id:4,nom:'cat 1'},
-              
-            ]
 
 const RenderCategorie = ({categorie}) => {
 
@@ -24,14 +18,16 @@ return (
 
 }
 
-
-
 const Categories = () => {
+      // le reducer dataCategorie est vide à son initialisation
+  const {dataCategorie} = useSelector(state=>state);
+
+  console.log("reducer dataCategorie :", dataCategorie);
   return (
     <View style={styles.content}>
       <Text style={styles.title}>Categories</Text>
       <FlatList
-        data={data}
+        data={dataCategorie}
         horizontal={true}
         renderItem={({item})=><RenderCategorie categorie={item}/>}
         keyExtractor={item=>item.id}
@@ -63,13 +59,13 @@ touchCategorie:{
   margin:10,
   padding:10,
   borderRadius:15,
-  height:45,
-  width:100
+  height:50,
+  width:125
 
 },
 textCategorie:{
 
-  fontSize:18,
+  fontSize:13,
   color:"rgba(239, 250, 246, 0.91)",
   fontWeight: "500"
 
