@@ -12,6 +12,7 @@ import { addArticle } from '../../redux/action';
 import DetailArticle from './Screen/DetailArticle';
 import Home from './Screen/Home';
 import Setting from './Screen/Setting';
+import Panier from './Screen/Panier';
 
 
 const Tab = createBottomTabNavigator();
@@ -23,8 +24,9 @@ const Accueil = ()=>{
     return(
 
         <Stack.Navigator>
-              <Stack.Screen name= 'Accueil' component={Home}/>
+              <Stack.Screen name= 'Accueil' component={Home} options={{headerShown:false}}/>
               <Stack.Screen name= 'DetailArticle' component={ DetailArticle } options={{headerShown:false}}/>
+              
 
 
         </Stack.Navigator>
@@ -89,7 +91,8 @@ const dispatch = useDispatch();
           }
 
           // affichage dans le node des élements de la data base
-          //console.log("Categorie",categorieData.id, categorieData.data())
+          console.log("Articles",articleData.id, articleData.data())
+          
           dispatch(addArticle(tempArticle))
 
         })
@@ -107,6 +110,7 @@ const dispatch = useDispatch();
     
       <Tab.Navigator screenOptions={{headerShown:false}}>
         <Tab.Screen name="Accueil" component={Accueil} />
+        <Tab.Screen name="Panier" component={Panier} />
         <Tab.Screen name="Mon Compte" component={Setting} />
       </Tab.Navigator>
     

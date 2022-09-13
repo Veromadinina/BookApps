@@ -1,4 +1,4 @@
-import { ADD_ARTICLE, ADD_CATEGORIE, EDIT_LOGIN } from "./type";
+import { ADD_ARTICLE, ADD_CATEGORIE, ADD_PANIER, EDIT_LOGIN, REMOVE_PANIER, REMOVE_ONE_PANIER } from "./type";
 import { COUNT_NUMB } from "./type";
 
 export const editLogin = (login)=>({
@@ -33,3 +33,30 @@ export const addArticle = (article)=>({
   
   
   })
+
+  export const addPanier = (panier)=>({
+
+    // j'ai créé mon type j'ai crée mon action
+        type:ADD_PANIER,
+        payload : panier
+    
+    
+    })
+
+  export const removePanier = ()=>({
+
+      // j'ai créé mon type j'ai crée mon action pour vider mon panier
+          type:REMOVE_PANIER,
+          payload : []
+      
+      
+      })
+
+      export const removeOnePanier = (panier)=>({
+
+        // j'ai créé mon type j'ai crée mon action pour vider mon panier
+            type:REMOVE_ONE_PANIER,
+            payload : panier
+        
+        
+        })
