@@ -42,11 +42,13 @@ const Articles = () => {
   console.log("reducer dataArticles :", dataArticle);
   return (
     <View style={styles.articleContent}>
-      <Text style={styles.articleTitle}>Articles</Text>
+      <Text style={styles.articleTitle}>Tout en fleur...</Text>
       <FlatList
+        style = {{margin:5}}
         data={dataArticle}
         horizontal={false}
         numColumns={2}
+        columnWrapperStyle={styles.row}
         renderItem={({item})=><RenderArticles article={item}/>}
         keyExtractor={item=>item.id}
       />

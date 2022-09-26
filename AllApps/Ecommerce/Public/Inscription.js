@@ -1,42 +1,42 @@
 import { View, Text } from 'react-native'
 import React, { useState, useContext }from 'react'
-import { useNavigation } from '@react-navigation/native'
+
+import { Button, Input } from '@rneui/themed';
 
 import Firebase from '../../../FirebaseContext/firebase';
 import auth from '@react-native-firebase/auth';
 
-import { Button, Input } from '@rneui/themed';
-
-
+import { useNavigation } from '@react-navigation/native'
+//Mes Icones
 import Icone from 'react-native-vector-icons/Feather'
 import Icona from 'react-native-vector-icons/Octicons'
 import Icono from 'react-native-vector-icons/MaterialIcons'
 
-const Connexion = () => {
 
-      const navigation = useNavigation();
 
-       // modifier mon état de visibilité du mot de passe
+const Inscription = () => {
+  const navigation = useNavigation();
+    // modifier mon état de visibilité du mot de passe
   const [affMotDePasse, setaffMotDePasse] = useState(true);
 
   const [email, setEmail] = useState();
   const [motDePasse, setMotDePasse] = useState();
-
+  
   // ajout de firebase
   const firebase = useContext(Firebase);
 
-      const goToInscription = ()=>{
-        navigation.navigate('Inscription')
+      const goToConnexion = ()=>{
+        navigation.navigate('Connexion');
       }
 
-      const connect =()=>{
+      const save =()=>{
 
         console.log("first", email, motDePasse);
 
         auth()
-        .signInWithEmailAndPassword(email, motDePasse)
+        .createUserWithEmailAndPassword(email, motDePasse)
   .then(() => {
-    console.log('User account signed in!');
+    console.log('User account created & signed in!');
   })
   .catch(error => {
 
@@ -45,7 +45,7 @@ const Connexion = () => {
       }
   return (
     <View>
-      <Text>Connexion</Text>
+      <Text>Inscription</Text>
       <Input
       placeholder='Saisissez votre adresse email'
       onChangeText={value=>setEmail (value)}
@@ -77,17 +77,18 @@ const Connexion = () => {
         />
       }
     /> 
-      <Button
-      onPress={goToInscription}
-      title="Inscription" 
-      type="outline" />
-
-<Button 
-        onPress={connect}
-        title="Connexion !" 
+       <Button 
+        onPress={save}
+        title="Je m'inscris !" 
         type="outline" />
+
+      <Button 
+        onPress={goToConnexion}
+        title="Je me connecte !" 
+        type="outline" />
+
     </View>
   )
 }
 
-export default Connexion
+export default Inscription

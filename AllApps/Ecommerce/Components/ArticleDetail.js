@@ -20,8 +20,10 @@ const ArticleDetail = ({article}) => {
   return (
     <View>
       <Image style= {styles.imageDetail} source = {{ uri:article.image }}/>
-      <Text>{article.nom}</Text>
+      <Text style={styles.nomDetail}>{article.nom}</Text>
+      <Text style= {styles.prixDetail}>{article?.prix}€</Text> 
       <Button
+        
         onPress={ajouter}
         title="Ajouter au Panier"
 

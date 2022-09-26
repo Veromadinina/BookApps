@@ -3,11 +3,14 @@ import { useDispatch } from 'react-redux';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import MaterialIcons  from "react-native-vector-icons/MaterialIcons";
 
 import { FireBaseContext } from '../../FirebaseContext';
+import auth from '@react-native-firebase/auth';
 
 import {addCategorie} from '../../redux/action'
-import { addArticle } from '../../redux/action';
+import { addArticle,editUser } from '../../redux/action';
+
 
 import DetailArticle from './Screen/DetailArticle';
 import Home from './Screen/Home';
@@ -98,20 +101,51 @@ const dispatch = useDispatch();
         })
       }
 
+   
+
+    }
+    const authStateChanged = ( user)=>{
+
+      console.log("authStateChanged user", user);
+      dispatch(editUser(user))
+
     }
     useEffect(() => {
+
+      
       
       initCategories();
       initArticles();
+
+      const subscriber = auth().onAuthStateChanged(authStateChanged);
+      return subscriber; // unsubscribe on unmount
      
     },[])
  
     return (
     
       <Tab.Navigator screenOptions={{headerShown:false}}>
-        <Tab.Screen name="Accueil" component={Accueil} />
-        <Tab.Screen name="Panier" component={Panier} />
-        <Tab.Screen name="Mon Compte" component={Setting} />
+        <Tab.Screen name="Accueil" component={Accueil}
+                    options={{
+                      tabBarIcon: () => (
+                        <MaterialIcons name="home" size={18} />
+                      ),
+                    }}
+        />
+        <Tab.Screen name="Panier" component={Panier}
+                    options={{
+                      tabBarIcon: () => (
+                        <MaterialIcons name="shopping-basket" size={18} />
+                      ),
+                    }}
+        />
+                    
+        <Tab.Screen name="Mon Compte" component={Setting}
+                    options={{
+                      tabBarIcon: () => (
+                        <MaterialIcons name="supervised-user-circle" size={18} />
+                      ),
+                    }} />
       </Tab.Navigator>
     
   );
